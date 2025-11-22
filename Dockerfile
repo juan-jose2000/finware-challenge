@@ -17,7 +17,7 @@ RUN addgroup -g 1001 -S nodejs && \
 RUN chown -R nestjs:nodejs /app
 USER nestjs
 
-EXPOSE 3000
+EXPOSE 4000
 
 ENTRYPOINT ["dumb-init", "--"]
 CMD ["npm", "run", "start:dev"]
@@ -42,7 +42,7 @@ RUN addgroup -g 1001 -S nodejs && \
 RUN chown -R nestjs:nodejs /app
 USER nestjs
 
-EXPOSE 3000
+EXPOSE 4000
 
 ENTRYPOINT ["dumb-init", "--"]
 CMD ["npm", "run", "start:prod"]
