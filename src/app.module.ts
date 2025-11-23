@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { AuthModule } from './auth/auth.module';
 import { OpportunitiesModule } from './opportunities/opportunities.module'
+import { InvestmentsModule } from './investments/investments.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { OpportunitiesModule } from './opportunities/opportunities.module'
     }),
     AuthModule,
     OpportunitiesModule,
+    InvestmentsModule,
   ],
 })
 export class AppModule {}

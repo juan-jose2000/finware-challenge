@@ -126,7 +126,19 @@ export class OpportunitiesService implements OnModuleInit {
       throw new NotFoundException(`Opportunity with ID ${id} not found`);
     }
 
-    await this.opportunityRepository.remove(opportunity);
+    try {
+      await this.opportunityRepository.remove(opportunity);
+    } catch (error) {
+      // Handle foreign key constraint violation
+      if (error.code === '23503') {
+        throw new BadRequestException(
+          `Cannot delete opportunity "${opportunity.name}" because it has associated investments. ` +
+          `Please remove all related investments first before deleting this opportunity.`
+        );
+      }
+      // Re-throw other database errors
+      throw error;
+    }
   }
 
   // Event listener for completed Ollama analysis
