@@ -1,38 +1,128 @@
+// {
+//   "version": "0.2.0",
+//   "configurations": [
+//     {
+//       "name": "Debug Jest Tests",
+//       "type": "node",
+//       "request": "launch",
+//       "runtimeExecutable": "npm",
+//       "runtimeArgs": [
+//         "run",
+//         "test",
+//         "--",
+//         "--runInBand",
+//         "--verbose"
+//       ],
+//       "console": "integratedTerminal",
+//       "internalConsoleOptions": "neverOpen",
+//       "port": 9229,
+//       "disableOptimisticBPs": true
+//     },
+//     {
+//       "name": "Debug Single Test File",
+//       "type": "node",
+//       "request": "launch",
+//       "runtimeExecutable": "npm",
+//       "runtimeArgs": [
+//         "run",
+//         "test",
+//         "--",
+//         "${fileBasename}",
+//         "--runInBand",
+//         "--verbose"
+//       ],
+//       "console": "integratedTerminal",
+//       "internalConsoleOptions": "neverOpen"
+//     }
+//   ]
+// }
+
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Debug Jest Tests",
-      "type": "node",
-      "request": "launch",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run",
-        "test",
-        "--",
-        "--runInBand",
-        "--verbose"
-      ],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "port": 9229,
-      "disableOptimisticBPs": true
-    },
-    {
-      "name": "Debug Single Test File",
-      "type": "node",
-      "request": "launch",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run",
-        "test",
-        "--",
-        "${fileBasename}",
-        "--runInBand",
-        "--verbose"
-      ],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen"
-    }
-  ]
-}
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug NestJS",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/src/main.ts",
+        "preLaunchTask": "npm: build",
+        "outFiles": [
+          "${workspaceFolder}/dist/**/*.js"
+        ],
+        "env": {
+          "NODE_ENV": "development",
+        },
+        "console": "integratedTerminal",
+        "skipFiles": [
+          "<node_internals>/**",
+          "node_modules/**"
+        ]
+      },
+      {
+        "name": "Debug NestJS (Watch Mode)",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/src/main.ts",
+        "preLaunchTask": "npm: start:dev",
+        "outFiles": [
+          "${workspaceFolder}/dist/**/*.js"
+        ],
+        "env": {
+          "NODE_ENV": "development",
+        },
+        "console": "integratedTerminal",
+        "skipFiles": [
+          "<node_internals>/**",
+          "node_modules/**"
+        ],
+        "restart": true,
+        "runtimeArgs": [
+          "--preserve-symlinks"
+        ]
+      },
+      {
+        "name": "Debug Current File",
+        "type": "node",
+        "request": "launch",
+        "program": "${file}",
+        "console": "integratedTerminal",
+        "skipFiles": [
+          "<node_internals>/**",
+          "node_modules/**"
+        ]
+      },
+      {
+        "name": "Debug Jest Tests",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/node_modules/.bin/jest",
+        "args": [
+          "--runInBand",
+          "--watchAll=false"
+        ],
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "openOnSessionStart",
+        "skipFiles": [
+          "<node_internals>/**",
+          "node_modules/**"
+        ]
+      },
+      {
+        "name": "Debug Specific Test",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/node_modules/.bin/jest",
+        "args": [
+          "${file}",
+          "--runInBand",
+          "--watchAll=false"
+        ],
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "openOnSessionStart",
+        "skipFiles": [
+          "<node_internals>/**",
+          "node_modules/**"
+        ]
+      }
+    ]
+  }

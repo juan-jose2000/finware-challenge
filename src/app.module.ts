@@ -1,13 +1,16 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 import { AuthModule } from './auth/auth.module';
+import { OpportunitiesModule } from './opportunities/opportunities.module'
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    EventEmitterModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DATABASE_URL ? new URL(process.env.DATABASE_URL).hostname : 'localhost',
@@ -20,6 +23,7 @@ import { AuthModule } from './auth/auth.module';
       logging: true,
     }),
     AuthModule,
+    OpportunitiesModule,
   ],
 })
 export class AppModule {}

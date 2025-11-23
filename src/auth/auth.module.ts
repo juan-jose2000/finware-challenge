@@ -10,9 +10,9 @@ import { User } from './entities/user.entity';
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
-    PassportModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'your-secret-key',
+      secret: process.env.JWT_SECRET || 'finware-jwt-secret-key-2025-very-secure',
       signOptions: { expiresIn: '24h' },
     }),
   ],
