@@ -120,4 +120,23 @@ export class OllamaService {
             throw new Error(`Failed to generate market analysis: ${error.message}`);
         }
     }
+
+    // Get queue status (debugging method)
+    getQueueStatus(): { queueLength: number; isProcessing: boolean } {
+        return {
+            queueLength: this.jobQueue.length,
+            isProcessing: this.isProcessing,
+        };
+    }
+
+    // Check if Ollama service is available
+    async checkHealth(): Promise<boolean> {
+        try {
+            const response = await this.httpClient.get('/api/tags');
+            return response.status === 200;
+        } catch (error) {
+            this.logger.error('Ollama health check failed:', error.message);
+            return false;
+        }
+    }
 }
