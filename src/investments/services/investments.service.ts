@@ -25,8 +25,6 @@ export class InvestmentsService {
   async create(createInvestmentDto: CreateInvestmentDto, userId: number): Promise<InvestmentResponseDto> {
     const { opportunityId, amount } = createInvestmentDto;
 
-    this.logger.log(`User ${userId} attempting to invest $${amount} in opportunity ${opportunityId}`);
-
     // Validate opportunity exists and amount constraints
     const opportunity = await this.opportunityRepository.findOne({
       where: { id: opportunityId },
@@ -57,7 +55,7 @@ export class InvestmentsService {
 
       // Check sufficient balance - after acquiring lock
       if (user.balance < amount) {
-        this.logger.warn(`User ${userId} insufficient balance. Has: $${user.balance}, Needs: $${amount}`);
+        this.logger.warn(`User ${userId} insufficient balance.`);
         throw new BadRequestException(
           `Insufficient balance. Available: $${user.balance.toLocaleString()}, Required: $${amount.toLocaleString()}`
         );
@@ -85,10 +83,7 @@ export class InvestmentsService {
         updatedAt: new Date(),
       });
 
-      this.logger.log(
-        `Investment ${savedInvestment.id} completed: User ${userId} invested $${amount}. ` +
-        `Balance: $${balanceBefore} → $${balanceAfter}`
-      );
+      this.logger.log(`Investment ${savedInvestment.id} completed`);
 
       // Return response with opportunity details
       return this.mapToResponseDto(savedInvestment, opportunity);

@@ -1,7 +1,10 @@
 version: '3.8'
 services:
   api:
-    image: finware-api:dev  # Use pre-built image instead of build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
     ports:
       - "4000:4000"
     environment:
@@ -11,9 +14,10 @@ services:
     depends_on:
       - db
       - ollama
-    volumes:
-      - .:/app
-      - /app/node_modules
+    # volume mounts for dev
+    # volumes:
+    #   - .:/app
+    #   - /app/node_modules
 
   db:
     image: postgres:15

@@ -20,7 +20,7 @@ import { InvestmentsModule } from './investments/investments.module';
       password: process.env.DATABASE_URL ? new URL(process.env.DATABASE_URL).password : 'password',
       database: process.env.DATABASE_URL ? new URL(process.env.DATABASE_URL).pathname.slice(1) : 'finware',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true, // Set to false in production
+      synchronize: false, // Set to false in production
       logging: true,
     }),
     AuthModule,
