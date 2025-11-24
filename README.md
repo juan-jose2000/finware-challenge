@@ -57,24 +57,22 @@ cd finware-challenge
 The application uses Docker Compose for containerized development. All environment variables are configured in `docker-compose.yml`.
 
 ### 3. Build and Start Services
-# Build and start all services (API, PostgreSQL, Ollama)
+### Build and start all services (API, PostgreSQL, Ollama)
 docker-compose up -d
 
 ### 4. Setup Ollama AI Model ---- Important #####################################################
 
 **Important**: The AI market analysis feature requires a specific Ollama model to be downloaded.
 
-# Access the Ollama container
+### Access the Ollama container
 docker-compose exec ollama bash
 
-# Pull the required model for AI market analysis (I used phi:latest) 
-# if you want to modify for other version, see -> Common Issues - step 1. **Ollama Model** on this documentation
+### Pull the required model for AI market analysis (I used phi:latest) 
+#### if you want to modify for other version, see -> Common Issues - step 1. **Ollama Model** on this documentation
 ollama pull phi:latest
 
-# Exit the container
+### Exit the container
 exit
-
-#### ###############################################################################################3
 
 ## docker containers running in
 
@@ -207,16 +205,16 @@ Authorization: Bearer <token>
 ## Testing
 
 ### Unit Tests
-# Run all unit tests
+### Run all unit tests
 npm run test
 
-# Run all unit tests for opportunities module
+### Run all unit tests for opportunities module
 npm run test -- src/auth/__tests__/
 
-# Run all unit tests for opportunities module
+### Run all unit tests for opportunities module
 npm run test -- src/opportunities/__tests__/
 
-# Run all unit tests for opportunities module
+### Run all unit tests for opportunities module
 npm run test -- src/investments/__tests__/
 
 ### Test Database
@@ -300,24 +298,6 @@ src/
 **Analysis Prompt --- very important**: The AI receives a structured prompt asking for professional market analysis: *"As a financial analyst, provide a brief market analysis for investing $[amount] MXN in "[name]". Consider fintech market trends, potential growth, and general investment viability. Keep your response professional and concise. max in 2-3 sentences"*
 
 These technical specifications ensure reliable, fast, and high-quality AI-generated market analysis for investment opportunities.
-
-## Deployment
-
-### Development
-```bash
-docker-compose up -d
-```
-
-### Production
-```bash
-# Build production image
-docker build --target production -t finware-api:prod .
-
-# **** Important ***
-# Update docker-compose.yml for production
-# Change target to 'production' and remove development volumes
-#******
-```
 
 ## Database Schema
 
