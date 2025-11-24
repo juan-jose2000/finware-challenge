@@ -57,24 +57,24 @@ cd finware-challenge
 The application uses Docker Compose for containerized development. All environment variables are configured in `docker-compose.yml`.
 
 ### 3. Build and Start Services
-# Build the application image
-docker-compose build
-
-# Start all services (API, PostgreSQL, Ollama)
+# Build and start all services (API, PostgreSQL, Ollama)
 docker-compose up -d
 
-### 4. Setup Ollama AI Model
+### 4. Setup Ollama AI Model ---- Important #####################################################
 
 **Important**: The AI market analysis feature requires a specific Ollama model to be downloaded.
 
 # Access the Ollama container
 docker-compose exec ollama bash
 
-# Pull the required model (I used phi:latest)
+# Pull the required model for AI market analysis (I used phi:latest) 
+# if you want to modify for other version, see -> Common Issues - step 1. **Ollama Model** on this documentation
 ollama pull phi:latest
 
 # Exit the container
 exit
+
+#### ###############################################################################################3
 
 ## docker containers running in
 
@@ -334,23 +334,27 @@ docker build --target production -t finware-api:prod .
 
 ### Common Issues
 
-1. **Ollama API Timeout**
+1. **Ollama Model**
+   - Use phi:latest, if is necessary, grow this model on -> src/opportunities/services/ollama.service.ts ---- model: 'phi:latest', // or whatever model installed
+
+2. **Ollama API Timeout**
    - Use 300,000 miliseconds for response (5 min), if is necessary, grow this time. -> src/opportunities/services/ollama.service.ts ---- timeout: 300000
 
-2. **Ollama API promp**
+
+3. **Ollama API promp**
    - If is needed, prompt can be modify on -> src/opportunities/services/ollama.service.ts
     initial prompt
     const prompt = `As a financial analyst, provide a brief market analysis for investing $${amount.toLocaleString()} MXN in "${name}". Consider fintech market trends, potential growth, and general investment viability. Keep your response professional and concise. max in 2-3 sentences`;
 
-3. **Database Connection Failed**
+4. **Database Connection Failed**
    - Ensure PostgreSQL container is running: `docker-compose ps`
    - Check logs: `docker-compose logs db`
 
-4. **AI Analysis Not Working**
+5. **AI Analysis Not Working**
    - Verify Ollama model is downloaded: `docker-compose exec ollama ollama list`
    - Check Ollama logs: `docker-compose logs ollama`
 
-5. **Tests Failing**
+6. **Tests Failing**
    - Create test database: `docker-compose exec db createdb finware_test`
    - Ensure all containers are running
 
