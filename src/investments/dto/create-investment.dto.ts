@@ -1,10 +1,21 @@
 import { IsNotEmpty, IsNumber, IsPositive, Min, Max } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateInvestmentDto {
+  @ApiProperty({
+    description: 'ID of the investment opportunity',
+    example: 1
+  })
   @IsNotEmpty()
   @IsNumber()
   opportunityId: number;
 
+  @ApiProperty({
+    description: 'Investment amount (1 - 600,000 MXN)',
+    example: 5000,
+    minimum: 1,
+    maximum: 600000
+  })
   @IsNotEmpty()
   @IsNumber({ maxDecimalPlaces: 2 })
   @IsPositive()

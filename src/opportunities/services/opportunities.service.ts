@@ -117,7 +117,7 @@ export class OpportunitiesService implements OnModuleInit {
     return this.mapToResponseDto(updatedOpportunity!);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: number): Promise<{ message: string }> {
     const opportunity = await this.opportunityRepository.findOne({
       where: { id },
     });
@@ -128,6 +128,7 @@ export class OpportunitiesService implements OnModuleInit {
 
     try {
       await this.opportunityRepository.remove(opportunity);
+      return { message: `Opportunity "${opportunity.name}" has been successfully deleted` };
     } catch (error) {
       // Handle foreign key constraint violation
       if (error.code === '23503') {

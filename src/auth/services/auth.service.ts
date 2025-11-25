@@ -16,6 +16,11 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
+  private formatBirthDate(birthDate: Date | string): string {
+    const date = typeof birthDate === 'string' ? new Date(birthDate) : birthDate;
+    return date.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+  }
+
   async register(registerDto: RegisterDto): Promise<AuthResponseDto> {
     const { email, password, fullName, birthDate } = registerDto;
 
@@ -50,6 +55,7 @@ export class AuthService {
         id: savedUser.id,
         fullName: savedUser.fullName,
         email: savedUser.email,
+        birthDate: this.formatBirthDate(savedUser.birthDate), // Use helper method
         balance: savedUser.balance,
       },
     };
@@ -80,6 +86,7 @@ export class AuthService {
         id: user.id,
         fullName: user.fullName,
         email: user.email,
+        birthDate: this.formatBirthDate(user.birthDate), // Use helper method
         balance: user.balance,
       },
     };

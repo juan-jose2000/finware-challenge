@@ -77,6 +77,7 @@ exit
 ## docker containers running in
 
 The API runs on `http://localhost:4000`
+Swagger runs on `http://localhost:4000/api`
 DB runs on `http://localhost:5432`
 Ollama runs on `http://localhost:11434`
 
