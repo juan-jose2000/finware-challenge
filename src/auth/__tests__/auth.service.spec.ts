@@ -97,6 +97,7 @@ describe('AuthService', () => {
           id: 1,
           fullName: 'John Doe',
           email: 'john@example.com',
+          birthDate: '1990-01-01',
           balance: 1000.00,
         },
       });
@@ -130,6 +131,7 @@ describe('AuthService', () => {
         id: 1,
         fullName: 'John Doe',
         email: 'john@example.com',
+        birthDate: new Date('1990-01-01'),
         password: 'hashedPassword',
         balance: 1000.00,
       };
@@ -150,6 +152,7 @@ describe('AuthService', () => {
           id: 1,
           fullName: 'John Doe',
           email: 'john@example.com',
+          birthDate: '1990-01-01',
           balance: 1000.00,
         },
       });

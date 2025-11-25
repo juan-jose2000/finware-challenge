@@ -70,8 +70,9 @@ describe('Opportunities DTO Validation', () => {
     it('should allow partial updates', async () => {
       const dto = new UpdateOpportunityDto();
       dto.name = 'Updated Name';
-      // Other fields optional
-
+      // Other fields optional - this should pass
+      // No validation errors expected for partial updates
+      
       const errors = await validate(dto);
       expect(errors.length).toBe(0);
     });

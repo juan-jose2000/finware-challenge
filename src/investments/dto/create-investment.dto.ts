@@ -12,7 +12,7 @@ export class CreateInvestmentDto {
 
   @ApiProperty({
     description: 'Investment amount (1 - 600,000 MXN)',
-    example: 5000,
+    example: 500,
     minimum: 1,
     maximum: 600000
   })

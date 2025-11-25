@@ -84,7 +84,7 @@ describe('InvestmentsController', () => {
 
       mockInvestmentsService.findAllByUser.mockResolvedValue(investments);
 
-      const result = await controller.findAll(1);
+      const result = await controller.findAllByUser(1);
 
       expect(mockInvestmentsService.findAllByUser).toHaveBeenCalledWith(1);
       expect(result).toEqual(investments);
@@ -124,7 +124,7 @@ describe('InvestmentsController', () => {
 
       mockInvestmentsService.findOne.mockResolvedValue(investment);
 
-      const result = await controller.findOne(1, 1);
+      const result = await controller.findOne('1', 1);
 
       expect(mockInvestmentsService.findOne).toHaveBeenCalledWith(1, 1);
       expect(result).toEqual(investment);
