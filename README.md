@@ -1,4 +1,4 @@
-# Fintech Challenge - Investment Platform API
+# Fintech Investment Platform API
 
 A comprehensive fintech investment platform built with NestJS, TypeORM, and PostgreSQL, featuring AI-powered market analysis using Ollama.
 
@@ -11,13 +11,22 @@ This README includes:
 - Troubleshooting section
 - Business logic explanations
 
+## Features
+
+- **User Authentication**: JWT-based authentication with bcrypt password hashing.
+- **Investment Opportunities**: Create and manage investment opportunities ($40K-$600K range).
+- **AI Market Analysis**: Automatic market analysis generation using Ollama LLM.
+- **Investment Transactions**: Secure investment creation with ACID compliance and concurrency control.
+- **Database**: PostgreSQL with TypeORM for robust data management.
+- **Containerized**: Full Docker setup for development and production environments.
+
 ## Technologies Used
 
 - **Framework**: NestJS (Node.js)
 - **Database**: PostgreSQL 15
 - **ORM**: TypeORM
 - **Authentication**: JWT + Passport
-- **AI**: Ollama (Local LLM - phi:latest)
+- **AI**: Ollama (Local LLM - `phi:latest`)
 - **Containerization**: Docker + Docker Compose
 - **Testing**: Jest + Supertest
 - **Validation**: class-validator
@@ -32,25 +41,18 @@ This README includes:
 5. Push to branch: `git push -u origin feature/your-feature`
 6. Create a Pull Request
 
-## Features
-
-- **User Authentication**: JWT-based authentication with bcrypt password hashing
-- **Investment Opportunities**: Create and manage investment opportunities ($40K-$600K range)
-- **AI Market Analysis**: Automatic market analysis generation using Ollama LLM
-- **Investment Transactions**: Secure investment creation with ACID compliance and concurrency control
-- **Database**: PostgreSQL with TypeORM for robust data management
-- **Containerized**: Full Docker setup for development and production
-
 ## Prerequisites
 
 - Docker Desktop (with at least 4GB RAM allocated)
 - Docker Compose
+- Node.js (v18+ recommended if running locally outside Docker)
 - Git
 
 ## Installation & Setup
 
 ### 1. Clone the Repository
-git clone https://github.com/juan-jose2000/finware-challenge.git
+```bash
+git clone [https://github.com/juan-jose2000/finware-challenge.git](https://github.com/juan-jose2000/finware-challenge.git)
 cd finware-challenge
 
 ### 2. Environment Setup
@@ -209,13 +211,13 @@ Authorization: Bearer <token>
 ### Run all unit tests
 npm run test
 
-### Run all unit tests for opportunities module
+### Run all unit tests for auth module
 npm run test -- src/auth/__tests__/
 
 ### Run all unit tests for opportunities module
 npm run test -- src/opportunities/__tests__/
 
-### Run all unit tests for opportunities module
+### Run all unit tests for investments module
 npm run test -- src/investments/__tests__/
 
 ### Test Database
@@ -340,4 +342,4 @@ These technical specifications ensure reliable, fast, and high-quality AI-genera
    - Ensure all containers are running
 
 ## License
-This project is part of the Finware Challenge assessment.
+This project is open-source and available under the MIT License.
