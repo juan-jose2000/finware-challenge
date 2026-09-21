@@ -1,4 +1,4 @@
-# Finware Challenge - Investment Platform API
+# Fintech Challenge - Investment Platform API
 
 A comprehensive fintech investment platform built with NestJS, TypeORM, and PostgreSQL, featuring AI-powered market analysis using Ollama.
 
